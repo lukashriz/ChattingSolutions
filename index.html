@@ -10,87 +10,66 @@
     <meta property="og:type" content="website" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Fira+Code:wght@300..700&family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400..700;1,400..700&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Outfit:wght@100..900&family=Oxanium:wght@200..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <script type="module" crossorigin src="/assets/index-CpkxSCr5.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Dp4C7b_Q.css">
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- Chatting Solutions AI Assistant Widget -->
     <style>
-      body {
-        margin:0;
-        min-height:100vh;
-        font-family: 'Segoe UI', Arial, sans-serif;
-        background: #f6f8fa;
-        color: #222;
-      }
-      header {
-        background: linear-gradient(135deg, #0066ff 60%, #33bbff 100%);
-        color: #fff;
-        padding: 36px 0 26px 0;
-        text-align: center;
-        font-size: 2.4em;
-        font-weight: bold;
-        letter-spacing: 1px;
-        margin-bottom: 18px;
-        box-shadow: 0 2px 12px rgba(0,102,255,0.10);
-      }
-      main {
-        max-width: 680px;
-        margin: 0 auto;
-        background: #fff;
-        padding: 30px 34px 48px 34px;
-        border-radius: 18px;
-        box-shadow: 0 4px 32px rgba(0,0,0,0.12);
-      }
-      h2 {
-        margin-top: 0;
-        font-size: 1.5em;
-      }
-      p {
-        font-size: 1.12em;
-      }
-      /* --- Chatbot Widget Styles --- */
       #cs-chatbot-launch {
         position: fixed;
-        bottom: 32px;
-        right: 32px;
+        bottom: 40px;
+        right: 40px;
         z-index: 9999;
-        background: linear-gradient(135deg, #0066ff 60%, #33bbff 100%);
+        background: linear-gradient(135deg, #0066ff 70%, #33bbff 100%);
         color: #fff;
         border: none;
         border-radius: 50%;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.18);
-        width: 62px;
-        height: 62px;
-        font-size: 32px;
+        box-shadow: 0 8px 32px rgba(0,102,255,0.18);
+        width: 80px;
+        height: 80px;
+        font-size: 38px;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: box-shadow 0.2s;
+        transition: box-shadow 0.2s, transform 0.2s;
+        animation: floatBtn 2.4s infinite ease-in-out;
+      }
+      @keyframes floatBtn {
+        0%,100% { transform: translateY(0);}
+        50% { transform: translateY(-10px);}
       }
       #cs-chatbot-widget {
         position: fixed;
-        bottom: 100px;
-        right: 40px;
-        width: 370px;
-        max-width: 96vw;
+        bottom: 130px;
+        right: 50px;
+        width: 440px;
+        max-width: 99vw;
         font-family: 'Segoe UI', Arial, sans-serif;
         background: #fff;
-        border-radius: 18px;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.22);
+        border-radius: 24px;
+        box-shadow: 0 8px 40px rgba(0,102,255,0.28);
         z-index: 10000;
         display: none;
         flex-direction: column;
-        animation: popupIn 0.23s;
+        animation: popupIn 0.22s;
       }
       @keyframes popupIn {
-        from { opacity: 0; transform: translateY(40px) scale(0.96);}
+        from { opacity: 0; transform: translateY(50px) scale(0.96);}
         to { opacity: 1; transform: translateY(0) scale(1);}
       }
       #cs-chatbot-header {
-        background: linear-gradient(135deg, #0066ff 60%, #33bbff 100%);
+        background: linear-gradient(135deg, #0066ff 70%, #33bbff 100%);
         color: #fff;
-        padding: 14px 22px;
-        font-size: 18px;
+        padding: 20px 28px 18px 28px;
+        font-size: 22px;
         font-weight: bold;
-        border-top-left-radius: 18px;
-        border-top-right-radius: 18px;
+        border-top-left-radius: 24px;
+        border-top-right-radius: 24px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -99,21 +78,22 @@
         background: none;
         color: #fff;
         border: none;
-        font-size: 22px;
+        font-size: 30px;
         cursor: pointer;
       }
       #cs-chatbot-body {
-        max-height: 350px;
-        min-height: 180px;
+        max-height: 500px;
+        min-height: 260px;
         overflow-y: auto;
-        background: #f3f7fa;
-        padding: 18px 14px 10px 16px;
+        background: #f5f9ff;
+        padding: 26px 18px 14px 22px;
         margin-bottom: 2px;
         border-bottom: 1px solid #e8e8e8;
+        font-size: 17px;
       }
       .cs-chatbot-msg {
-        margin-bottom: 12px;
-        font-size: 15px;
+        margin-bottom: 18px;
+        font-size: 17px;
       }
       .cs-chatbot-msg.user {
         text-align: right;
@@ -123,9 +103,9 @@
       }
       .cs-chatbot-msg span {
         display: inline-block;
-        padding: 9px 16px;
+        padding: 13px 18px;
         border-radius: 20px;
-        max-width: 80%;
+        max-width: 85%;
         word-break: break-word;
       }
       .cs-chatbot-msg.user span {
@@ -140,34 +120,34 @@
       }
       #cs-chatbot-input-row {
         display: flex;
-        padding: 14px 16px;
-        background: #f3f7fa;
-        border-bottom-left-radius: 18px;
-        border-bottom-right-radius: 18px;
+        padding: 20px 22px;
+        background: #f5f9ff;
+        border-bottom-left-radius: 24px;
+        border-bottom-right-radius: 24px;
       }
       #cs-chatbot-input {
         flex: 1;
-        padding: 10px;
-        border-radius: 20px;
-        border: 1px solid #b3d1ff;
-        margin-right: 8px;
+        padding: 14px;
+        border-radius: 22px;
+        border: 1.5px solid #b3d1ff;
+        margin-right: 10px;
         outline: none;
-        font-size: 15px;
+        font-size: 17px;
         background: #fff;
         transition: border 0.2s;
       }
       #cs-chatbot-input:focus {
-        border: 1.5px solid #0066ff;
+        border: 2px solid #0066ff;
       }
       #cs-chatbot-send, #cs-chatbot-clear {
-        background: linear-gradient(135deg, #0066ff 60%, #33bbff 100%);
+        background: linear-gradient(135deg, #0066ff 70%, #33bbff 100%);
         color: #fff;
         border: none;
-        border-radius: 20px;
-        padding: 8px 16px;
+        border-radius: 22px;
+        padding: 11px 22px;
         cursor: pointer;
-        font-size: 15px;
-        margin-right: 5px;
+        font-size: 17px;
+        margin-right: 7px;
         transition: box-shadow 0.2s;
         box-shadow: 0 2px 8px rgba(0,102,255,0.08);
       }
@@ -177,34 +157,34 @@
         color: #0066ff;
         box-shadow: none;
       }
-      @media (max-width: 900px) {
-        main {padding:12vw 2vw 16vw 2vw;}
+      #cs-chatbot-quick {
+        margin-bottom: 10px;
+        display: flex;
+        gap: 10px;
+      }
+      .cs-chatbot-btn {
+        background: #e6f0ff;
+        color: #0066ff;
+        border: none;
+        border-radius: 16px;
+        padding: 7px 18px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.16s;
+      }
+      .cs-chatbot-btn:hover {
+        background: #cce3ff;
       }
       @media (max-width: 600px) {
         #cs-chatbot-widget { width: 99vw; right: 0px; }
-        header {font-size: 1.35em;}
-        main {padding: 20px 3vw;}
+        #cs-chatbot-header, #cs-chatbot-input-row {padding-left:10px;padding-right:10px;}
       }
     </style>
-  </head>
-  <body>
-    <header>
-      ChattingSolutions.com
-    </header>
-    <main>
-      <h2>Welcome!</h2>
-      <p>
-        This is the demo site for ChattingSolutions.com. If you need help, just click the chat button in the bottom right corner to speak directly with our Support Bot.
-      </p>
-      <p>
-        The bot is available 24/7 for your questions about our services, features, or website. We’re glad you’re here!
-      </p>
-    </main>
-    <!-- Chatbot Widget for ChattingSolutions.com -->
-    <button id="cs-chatbot-launch" title="Chat with Support">&#128172;</button>
+
+    <button id="cs-chatbot-launch" title="Let's Chat!">&#128172;</button>
     <div id="cs-chatbot-widget">
       <div id="cs-chatbot-header">
-        <span>ChattingSolutions Support</span>
+        <span>AI Assistant • Chatting Solutions</span>
         <button id="cs-chatbot-close" title="Close">&times;</button>
       </div>
       <div id="cs-chatbot-body"></div>
@@ -226,14 +206,33 @@
       const sendBtn = document.getElementById('cs-chatbot-send');
       const clearBtn = document.getElementById('cs-chatbot-clear');
 
-      let chatHistory = [
-        {
-          role: "system",
-          content: "You are ChattingSolutions.com Support Bot. Answer questions as a friendly, knowledgeable assistant for website visitors. If asked about ChattingSolutions.com services, reply clearly and politely."
-        }
-      ];
+      // --- Quick Reply Buttons ---
+      function renderQuickReplies() {
+        const quick = document.createElement('div');
+        quick.id = "cs-chatbot-quick";
+        quick.innerHTML = `
+          <button class="cs-chatbot-btn" data-btn="contact">Contact 🧍</button>
+          <button class="cs-chatbot-btn" data-btn="pricing">Pricing 🏷️</button>
+          <button class="cs-chatbot-btn" data-btn="help">Help ❓</button>
+        `;
+        body.appendChild(quick);
+
+        quick.querySelector('[data-btn="contact"]').onclick = () => {
+          appendMessage('bot', "You can contact us at info@chattingsolutions.com");
+        };
+        quick.querySelector('[data-btn="pricing"]').onclick = () => {
+          appendMessage('bot', "Here is a quick overview of our pricing:\n• Small projects: from $299 one-time.\n• Large projects: from $999 one-time.\n• Subscription: $49/month (includes support & updates).\n• AI message cost: from $0.001 per message.\nFor tailored pricing, contact info@chattingsolutions.com.");
+        };
+        quick.querySelector('[data-btn="help"]').onclick = () => {
+          appendMessage('bot', "Here are some FAQs to guide you:\n• What are the differences between AI solutions?\n• How customizable is your chatbot?\n• What is the implementation process?\n• How is my data secured?\n• What kind of support do you offer?\nIf you have more questions, just ask!");
+        };
+      }
 
       function appendMessage(role, text) {
+        // Remove quick replies if present
+        const quick = document.getElementById('cs-chatbot-quick');
+        if (quick) quick.remove();
+
         const msgDiv = document.createElement('div');
         msgDiv.className = `cs-chatbot-msg ${role}`;
         const span = document.createElement('span');
@@ -241,6 +240,9 @@
         msgDiv.appendChild(span);
         body.appendChild(msgDiv);
         body.scrollTop = body.scrollHeight;
+
+        // Always render quick replies after bot message
+        if (role === 'bot') renderQuickReplies();
       }
 
       function sendMessage() {
@@ -262,7 +264,7 @@
           body: JSON.stringify({
             model: "openai/gpt-3.5-turbo",
             messages: chatHistory,
-            max_tokens: 400
+            max_tokens: 500
           })
         })
         .then(response => response.json())
@@ -283,36 +285,49 @@
         });
       }
 
+      // --- Personalized System Prompt ---
+      let chatHistory = [
+        {
+          role: "system",
+          content: `You are an AI assistant for Chatting Solutions, a company providing AI-powered chatbots for websites. Always follow these rules:
+1. Friendly, professional, and concise. Use emojis sparingly for friendliness (👋, 🧍, 🏷️, ❓, 🎉). Never be rude or confusing.
+2. When users first open the chat, greet with: "Hello 👋, how can I help you today? If you want to know how the best AI assistant works, you're in the right place 🎉"
+3. Always support these quick reply buttons: Contact 🧍, Pricing 🏷️, Help ❓. Respond per company guidelines.
+4. Answer clearly, using company info from chattingsolutions.com. If unsure, politely ask for clarification or suggest contacting info@chattingsolutions.com.
+5. Use short paragraphs. Pricing in bullet points. Be professional but approachable.
+6. Never promote other products or give technical answers unrelated to Chatting Solutions. Never use slang.
+7. Guide users about AI chatbot services, pricing, and contact options.`
+        }
+      ];
+
       sendBtn.onclick = sendMessage;
       input.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') sendMessage();
       });
       clearBtn.onclick = function() {
         body.innerHTML = '';
-        chatHistory = [
-          {
-            role: "system",
-            content: "You are ChattingSolutions.com Support Bot. Answer questions as a friendly, knowledgeable assistant for website visitors. If asked about ChattingSolutions.com services, reply clearly and politely."
-          }
-        ];
+        chatHistory = [chatHistory[0]];
+        appendMessage('bot', "Hello 👋, how can I help you today? If you want to know how the best AI assistant works, you're in the right place 🎉");
       };
-
       launchBtn.onclick = function() {
         widget.style.display = "flex";
         launchBtn.style.display = "none";
-        setTimeout(function() { input.focus(); }, 300);
+        body.innerHTML = '';
+        chatHistory = [chatHistory[0]];
+        appendMessage('bot', "Hello 👋, how can I help you today? If you want to know how the best AI assistant works, you're in the right place 🎉");
       };
       closeBtn.onclick = function() {
         widget.style.display = "none";
         launchBtn.style.display = "flex";
       };
 
-      // Optional: Open with Ctrl+Shift+S
+      // Optional: Open with Ctrl+Shift+C
       document.addEventListener('keydown', function(e) {
-        if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 's') {
+        if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'c') {
           launchBtn.click();
         }
       });
     </script>
+    <!-- End Chatbot Widget -->
   </body>
 </html>
