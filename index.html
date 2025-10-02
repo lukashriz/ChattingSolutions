@@ -16,310 +16,297 @@
   </head>
   <body>
     <div id="root"></div>
-    <!-- Floating Blue Chatbot Button & Widget -->
     <style>
-      #cs-chatbot-launch {
-        position: fixed;
-        bottom: 40px;
-        right: 40px;
-        z-index: 9999;
-        background: linear-gradient(135deg, #0066ff 70%, #33bbff 100%);
-        color: #fff;
-        border: none;
-        border-radius: 50%;
-        box-shadow: 0 8px 32px rgba(0,102,255,0.18);
-        width: 80px;
-        height: 80px;
-        font-size: 38px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: box-shadow 0.2s, transform 0.2s;
-        animation: floatBtn 2.4s infinite ease-in-out;
-      }
-      @keyframes floatBtn {
-        0%,100% { transform: translateY(0);}
-        50% { transform: translateY(-10px);}
-      }
-      #cs-chatbot-widget {
-        position: fixed;
-        bottom: 130px;
-        right: 50px;
-        width: 440px;
-        max-width: 99vw;
-        font-family: 'Segoe UI', Arial, sans-serif;
-        background: #fff;
-        border-radius: 24px;
-        box-shadow: 0 8px 40px rgba(0,102,255,0.28);
-        z-index: 10000;
-        display: none;
-        flex-direction: column;
-        animation: popupIn 0.22s;
-      }
-      @keyframes popupIn {
-        from { opacity: 0; transform: translateY(50px) scale(0.96);}
-        to { opacity: 1; transform: translateY(0) scale(1);}
-      }
-      #cs-chatbot-header {
-        background: linear-gradient(135deg, #0066ff 70%, #33bbff 100%);
-        color: #fff;
-        padding: 20px 28px 18px 28px;
-        font-size: 22px;
-        font-weight: bold;
-        border-top-left-radius: 24px;
-        border-top-right-radius: 24px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-      #cs-chatbot-close {
-        background: none;
-        color: #fff;
-        border: none;
-        font-size: 30px;
-        cursor: pointer;
-      }
-      #cs-chatbot-body {
-        max-height: 500px;
-        min-height: 260px;
-        overflow-y: auto;
-        background: #f5f9ff;
-        padding: 26px 18px 14px 22px;
-        margin-bottom: 2px;
-        border-bottom: 1px solid #e8e8e8;
-        font-size: 17px;
-      }
-      .cs-chatbot-msg {
-        margin-bottom: 18px;
-        font-size: 17px;
-      }
-      .cs-chatbot-msg.user {
-        text-align: right;
-      }
-      .cs-chatbot-msg.bot {
-        text-align: left;
-      }
-      .cs-chatbot-msg span {
-        display: inline-block;
-        padding: 13px 18px;
-        border-radius: 20px;
-        max-width: 85%;
-        word-break: break-word;
-      }
-      .cs-chatbot-msg.user span {
-        background: #e9f3ff;
-        color: #3484f7;
-        box-shadow: 0 2px 8px rgba(0, 102, 255, 0.09);
-      }
-      .cs-chatbot-msg.bot span {
-        background: #fff;
-        color: #444;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-      }
-      #cs-chatbot-input-row {
-        display: flex;
-        padding: 20px 22px;
-        background: #f5f9ff;
-        border-bottom-left-radius: 24px;
-        border-bottom-right-radius: 24px;
-      }
-      #cs-chatbot-input {
-        flex: 1;
-        padding: 14px;
-        border-radius: 22px;
-        border: 1.5px solid #b3d1ff;
-        margin-right: 10px;
-        outline: none;
-        font-size: 17px;
-        background: #fff;
-        transition: border 0.2s;
-      }
-      #cs-chatbot-input:focus {
-        border: 2px solid #0066ff;
-      }
-      #cs-chatbot-send, #cs-chatbot-clear {
-        background: linear-gradient(135deg, #0066ff 70%, #33bbff 100%);
-        color: #fff;
-        border: none;
-        border-radius: 22px;
-        padding: 11px 22px;
-        cursor: pointer;
-        font-size: 17px;
-        margin-right: 7px;
-        transition: box-shadow 0.2s;
-        box-shadow: 0 2px 8px rgba(0,102,255,0.08);
-      }
-      #cs-chatbot-send:disabled {opacity:0.6; cursor:not-allowed;}
-      #cs-chatbot-clear {
-        background: #e8e8e8;
-        color: #0066ff;
-        box-shadow: none;
-      }
-      #cs-chatbot-quick {
-        margin-bottom: 10px;
-        display: flex;
-        gap: 10px;
-      }
-      .cs-chatbot-btn {
-        background: #e6f0ff;
-        color: #0066ff;
-        border: none;
-        border-radius: 16px;
-        padding: 7px 18px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background 0.16s;
-      }
-      .cs-chatbot-btn:hover {
-        background: #cce3ff;
-      }
-      @media (max-width: 600px) {
-        #cs-chatbot-widget { width: 99vw; right: 0px; }
-        #cs-chatbot-header, #cs-chatbot-input-row {padding-left:10px;padding-right:10px;}
-      }
+      /* Floating chatbot button */
+      .cs-chatbot-button{position:fixed;right:20px;bottom:20px;z-index:2147483000;display:flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:#111;color:#fff;box-shadow:0 8px 24px rgba(0,0,0,.2);cursor:pointer;border:none}
+      .cs-chatbot-badge{position:absolute;top:-6px;right:-6px;background:#22c55e;color:#fff;font:700 10px/1 Inter,system-ui,Arial;padding:4px 6px;border-radius:999px;box-shadow:0 6px 16px rgba(0,0,0,.18)}
+      .cs-chatbot-icon{width:24px;height:24px}
+      .cs-chat-window{position:fixed;right:20px;bottom:88px;width:320px;max-width:92vw;height:420px;max-height:70vh;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:12px;box-shadow:0 12px 36px rgba(0,0,0,.18);display:none;flex-direction:column;overflow:hidden;z-index:2147483000}
+      .cs-chat-header{padding:12px 14px;background:#111;color:#fff;display:flex;align-items:center;justify-content:space-between}
+      .cs-chat-header h4{margin:0;font:600 14px/1.2 Inter,system-ui,Arial}
+      .cs-chat-close{background:transparent;border:none;color:#fff;cursor:pointer;font:700 16px/1 Inter}
+      .cs-chat-messages{flex:1;overflow:auto;padding:12px;background:#fafafa}
+      .cs-msg{max-width:85%;margin:8px 0;padding:10px 12px;border-radius:12px;font:400 13px/1.5 Inter,system-ui,Arial;word-wrap:break-word;white-space:pre-wrap}
+      .cs-msg.user{background:#111;color:#fff;margin-left:auto;border-bottom-right-radius:4px}
+      .cs-msg.bot{background:#fff;border:1px solid rgba(0,0,0,.08);color:#111;border-bottom-left-radius:4px}
+      .cs-chat-input{display:flex;gap:8px;padding:10px;background:#fff;border-top:1px solid rgba(0,0,0,.08)}
+      .cs-chat-input input{flex:1;padding:10px 12px;border:1px solid rgba(0,0,0,.18);border-radius:8px;font:400 13px/1.4 Inter}
+      .cs-chat-input button{padding:10px 12px;border:none;border-radius:8px;background:#111;color:#fff;cursor:pointer;font:600 13px/1 Inter}
+      .cs-chat-hint{position:absolute;right:92px;bottom:28px;background:#111;color:#fff;font:500 12px/1.3 Inter;padding:8px 10px;border-radius:8px;box-shadow:0 10px 28px rgba(0,0,0,.22);display:none}
+      .cs-chat-quick{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0;}
+      .cs-chat-quick button{background:#e6f0ff;color:#0066ff;border:none;border-radius:16px;padding:6px 14px;cursor:pointer;font:600 13px/1 Inter;transition:background .18s;}
+      .cs-chat-quick button:hover{background:#cce3ff;}
+      /* Schedule a Demo Modal */
+      .cs-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.48);display:none;align-items:center;justify-content:center;z-index:2147483000}
+      .cs-modal{width:560px;max-width:92vw;background:#fff;border-radius:12px;box-shadow:0 14px 36px rgba(0,0,0,.22);overflow:hidden}
+      .cs-modal-header{padding:16px 20px;background:#111;color:#fff;display:flex;align-items:center;justify-content:space-between}
+      .cs-modal-header h3{margin:0;font:700 16px/1.2 Inter}
+      .cs-modal-body{padding:18px 20px}
+      .cs-field{margin-bottom:12px}
+      .cs-field label{display:block;margin:0 0 6px 0;font:600 12px/1.2 Inter;color:#111}
+      .cs-field input,.cs-field textarea{width:100%;padding:10px 12px;border:1px solid rgba(0,0,0,.18);border-radius:8px;font:400 13px/1.4 Inter}
+      .cs-modal-actions{display:flex;gap:10px;justify-content:flex-end;padding:12px 20px;border-top:1px solid rgba(0,0,0,.08)}
+      .cs-btn{padding:10px 14px;border:none;border-radius:8px;cursor:pointer;font:600 13px/1 Inter}
+      .cs-btn.primary{background:#111;color:#fff}
+      .cs-btn.ghost{background:#f5f5f5;color:#111}
+      .cs-sticky-demo{position:fixed;left:20px;bottom:20px;z-index:2147483000}
+      .cs-sticky-demo .cs-btn{box-shadow:0 8px 24px rgba(0,0,0,.15)}
+      @media (max-width:480px){.cs-chat-window{height:60vh}}
     </style>
-    <button id="cs-chatbot-launch" title="Let's Chat!">&#128172;</button>
-    <div id="cs-chatbot-widget">
-      <div id="cs-chatbot-header">
-        <span>AI Assistant • Chatting Solutions</span>
-        <button id="cs-chatbot-close" title="Close">&times;</button>
+
+    <div id="cs-chat-window" class="cs-chat-window" aria-live="polite" aria-label="Chatting Solutions chatbot">
+      <div class="cs-chat-header">
+        <h4>Chat with Chatting Solutions</h4>
+        <button class="cs-chat-close" aria-label="Close chat" id="cs-chat-close">×</button>
       </div>
-      <div id="cs-chatbot-body"></div>
-      <div id="cs-chatbot-input-row">
-        <input type="text" id="cs-chatbot-input" placeholder="Type your message..." autocomplete="off" />
-        <button id="cs-chatbot-send">Send</button>
-        <button id="cs-chatbot-clear">Clear</button>
+      <div class="cs-chat-messages" id="cs-chat-messages"></div>
+      <div class="cs-chat-quick" id="cs-chat-quick"></div>
+      <form class="cs-chat-input" id="cs-chat-form" autocomplete="on">
+        <input id="cs-chat-input" type="text" name="message" placeholder="Type a message..." aria-label="Message" required />
+        <button type="submit">Send</button>
+      </form>
+    </div>
+    <button id="cs-chatbot-button" class="cs-chatbot-button" aria-haspopup="dialog" aria-controls="cs-chat-window" aria-expanded="false">
+      <span class="cs-chatbot-badge" id="cs-chatbot-badge" style="display:none">New</span>
+      <svg class="cs-chatbot-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M12 3C7.03 3 3 6.58 3 11c0 2.17 1.06 4.14 2.78 5.6-.12.89-.54 2.37-1.71 3.86 0 0 2.03-.17 4.03-1.53.99.28 2.05.44 3.15.44 4.97 0 9-3.58 9-8s-4.03-8-9-8Z" stroke="currentColor" stroke-width="1.6"/>
+      </svg>
+    </button>
+    <div class="cs-chat-hint" id="cs-chat-hint">Need help? Chat with us</div>
+
+    <div class="cs-sticky-demo">
+      <button class="cs-btn primary" id="cs-open-demo">Schedule a demo</button>
+    </div>
+    <div class="cs-modal-overlay" id="cs-demo-overlay" role="dialog" aria-modal="true" aria-labelledby="cs-demo-title">
+      <div class="cs-modal">
+        <div class="cs-modal-header">
+          <h3 id="cs-demo-title">Schedule a Demo</h3>
+          <button class="cs-chat-close" id="cs-demo-close" aria-label="Close">×</button>
+        </div>
+        <form id="cs-demo-form">
+          <div class="cs-modal-body">
+            <div class="cs-field">
+              <label for="cs-name">Full name</label>
+              <input id="cs-name" name="name" type="text" placeholder="Jane Doe" required />
+            </div>
+            <div class="cs-field">
+              <label for="cs-email">Work email</label>
+              <input id="cs-email" name="email" type="email" placeholder="jane@company.com" required />
+            </div>
+            <div class="cs-field">
+              <label for="cs-company">Company</label>
+              <input id="cs-company" name="company" type="text" placeholder="Company Inc." required />
+            </div>
+            <div class="cs-field">
+              <label for="cs-datetime">Preferred date & time</label>
+              <input id="cs-datetime" name="datetime" type="datetime-local" />
+            </div>
+            <div class="cs-field">
+              <label for="cs-notes">Notes</label>
+              <textarea id="cs-notes" name="notes" rows="3" placeholder="Anything we should prepare?"></textarea>
+            </div>
+          </div>
+          <div class="cs-modal-actions">
+            <button type="button" class="cs-btn ghost" id="cs-demo-cancel">Cancel</button>
+            <button type="submit" class="cs-btn primary">Request demo</button>
+          </div>
+        </form>
       </div>
     </div>
+
     <script>
-      const API_KEY = "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";
-      const API_URL = "https://openrouter.ai/api/v1/chat/completions";
-      const launchBtn = document.getElementById('cs-chatbot-launch');
-      const widget = document.getElementById('cs-chatbot-widget');
-      const closeBtn = document.getElementById('cs-chatbot-close');
-      const body = document.getElementById('cs-chatbot-body');
-      const input = document.getElementById('cs-chatbot-input');
-      const sendBtn = document.getElementById('cs-chatbot-send');
-      const clearBtn = document.getElementById('cs-chatbot-clear');
-      // --- Quick Reply Buttons ---
-      function renderQuickReplies() {
-        const quick = document.createElement('div');
-        quick.id = "cs-chatbot-quick";
-        quick.innerHTML = `
-          <button class="cs-chatbot-btn" data-btn="contact">Contact 🧍</button>
-          <button class="cs-chatbot-btn" data-btn="pricing">Pricing 🏷️</button>
-          <button class="cs-chatbot-btn" data-btn="help">Help ❓</button>
-        `;
-        body.appendChild(quick);
-        quick.querySelector('[data-btn="contact"]').onclick = () => {
-          appendMessage('bot', "You can contact us at info@chattingsolutions.com");
-        };
-        quick.querySelector('[data-btn="pricing"]').onclick = () => {
-          appendMessage('bot', "Here is a quick overview of our pricing:\n• Small projects: from $299 one-time.\n• Large projects: from $999 one-time.\n• Subscription: $49/month (includes support & updates).\n• AI message cost: from $0.001 per message.\nFor tailored pricing, contact info@chattingsolutions.com.");
-        };
-        quick.querySelector('[data-btn="help"]').onclick = () => {
-          appendMessage('bot', "Here are some FAQs to guide you:\n• What are the differences between AI solutions?\n• How customizable is your chatbot?\n• What is the implementation process?\n• How is my data secured?\n• What kind of support do you offer?\nIf you have more questions, just ask!");
-        };
-      }
-      function appendMessage(role, text) {
-        // Remove quick replies if present
-        const quick = document.getElementById('cs-chatbot-quick');
-        if (quick) quick.remove();
-        const msgDiv = document.createElement('div');
-        msgDiv.className = `cs-chatbot-msg ${role}`;
-        const span = document.createElement('span');
-        span.textContent = text;
-        msgDiv.appendChild(span);
-        body.appendChild(msgDiv);
-        body.scrollTop = body.scrollHeight;
-        // Always render quick replies after bot message
-        if (role === 'bot') renderQuickReplies();
-      }
-      function sendMessage() {
-        const userMsg = input.value.trim();
-        if (!userMsg) return;
-        appendMessage('user', userMsg);
-        chatHistory.push({ role: 'user', content: userMsg });
-        input.value = '';
-        sendBtn.disabled = true;
-        sendBtn.textContent = "Sending...";
-        fetch(API_URL, {
-          method: "POST",
-          headers: {
-            "Authorization": "Bearer " + API_KEY,
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-          },
-          body: JSON.stringify({
-            model: "openai/gpt-3.5-turbo",
-            messages: chatHistory,
-            max_tokens: 500
-          })
-        })
-        .then(response => response.json())
-        .then(data => {
-          let botMsg = "Sorry, there was an error.";
-          if (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) {
-            botMsg = data.choices[0].message.content;
-          }
-          appendMessage('bot', botMsg);
-          chatHistory.push({ role: 'assistant', content: botMsg });
-        })
-        .catch(() => {
-          appendMessage('bot', "Network error. Try again later.");
-        })
-        .finally(() => {
-          sendBtn.disabled = false;
-          sendBtn.textContent = "Send";
-        });
-      }
-      // --- Personalized System Prompt ---
-      let chatHistory = [
-        {
-          role: "system",
-          content: `You are an AI assistant for Chatting Solutions, a company providing AI-powered chatbots for websites. Always follow these rules:
+      // --- Chatbot using OpenRouter AI ---
+      const openrouterKey = "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";
+      const openrouterEndpoint = "https://openrouter.ai/api/v1/chat/completions";
+      const systemPrompt = `You are an AI assistant for Chatting Solutions, a company providing AI-powered chatbots for websites. Always follow these rules:
 1. Friendly, professional, and concise. Use emojis sparingly for friendliness (👋, 🧍, 🏷️, ❓, 🎉). Never be rude or confusing.
 2. When users first open the chat, greet with: "Hello 👋, how can I help you today? If you want to know how the best AI assistant works, you're in the right place 🎉"
 3. Always support these quick reply buttons: Contact 🧍, Pricing 🏷️, Help ❓. Respond per company guidelines.
 4. Answer clearly, using company info from chattingsolutions.com. If unsure, politely ask for clarification or suggest contacting info@chattingsolutions.com.
 5. Use short paragraphs. Pricing in bullet points. Be professional but approachable.
 6. Never promote other products or give technical answers unrelated to Chatting Solutions. Never use slang.
-7. Guide users about AI chatbot services, pricing, and contact options.`
-        }
+7. Guide users about AI chatbot services, pricing, and contact options.`;
+
+      const chatWindow = document.getElementById('cs-chat-window');
+      const chatButton = document.getElementById('cs-chatbot-button');
+      const chatClose = document.getElementById('cs-chat-close');
+      const chatMessages = document.getElementById('cs-chat-messages');
+      const chatForm = document.getElementById('cs-chat-form');
+      const chatInput = document.getElementById('cs-chat-input');
+      const chatHint = document.getElementById('cs-chat-hint');
+      const badge = document.getElementById('cs-chatbot-badge');
+      const quickContainer = document.getElementById('cs-chat-quick');
+      let chatHistory = [
+        { role: "system", content: systemPrompt }
       ];
-      sendBtn.onclick = sendMessage;
-      input.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') sendMessage();
+
+      function showChat(show){
+        chatWindow.style.display = show ? 'flex' : 'none';
+        chatButton.setAttribute('aria-expanded', show ? 'true' : 'false');
+        if(show){
+          chatHint.style.display = 'none';
+          if(!chatMessages.dataset.greeted){
+            appendBot("Hello 👋, how can I help you today? If you want to know how the best AI assistant works, you're in the right place 🎉");
+            chatMessages.dataset.greeted = '1';
+          }
+          setTimeout(()=>chatInput.focus(), 50);
+        }
+      }
+      function appendUser(text){
+        const el = document.createElement('div');
+        el.className = 'cs-msg user';
+        el.textContent = text;
+        chatMessages.appendChild(el);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+      function appendBot(text){
+        const el = document.createElement('div');
+        el.className = 'cs-msg bot';
+        el.textContent = text;
+        chatMessages.appendChild(el);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        renderQuickReplies();
+        return el;
+      }
+      function setLoading(el, loading){
+        if(!el) return;
+        el.dataset.loading = loading ? '1' : '';
+        if(loading){ el.textContent = '…'; }
+      }
+      function renderQuickReplies(){
+        quickContainer.innerHTML = '';
+        [
+          {label: "Contact 🧍", value: "Contact"},
+          {label: "Pricing 🏷️", value: "Pricing"},
+          {label: "Help ❓", value: "Help"}
+        ].forEach(btn => {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.textContent = btn.label;
+          b.onclick = () => {
+            if(btn.value === "Contact"){
+              appendBot("You can contact us at info@chattingsolutions.com");
+            } else if(btn.value === "Pricing"){
+              appendBot("Here is a quick overview of our pricing:\n• Small projects: from $299 one-time.\n• Large projects: from $999 one-time.\n• Subscription: $49/month (includes support & updates).\n• AI message cost: from $0.001 per message.\nFor tailored pricing, contact info@chattingsolutions.com.");
+            } else if(btn.value === "Help"){
+              appendBot("Here are some FAQs to guide you:\n• What are the differences between AI solutions?\n• How customizable is your chatbot?\n• What is the implementation process?\n• How is my data secured?\n• What kind of support do you offer?\nIf you have more questions, just ask!");
+            }
+          };
+          quickContainer.appendChild(b);
+        });
+      }
+
+      chatButton.addEventListener('click', ()=>{
+        const isOpen = chatWindow.style.display === 'flex';
+        showChat(!isOpen);
       });
-      clearBtn.onclick = function() {
-        body.innerHTML = '';
-        chatHistory = [chatHistory[0]];
-        appendMessage('bot', "Hello 👋, how can I help you today? If you want to know how the best AI assistant works, you're in the right place 🎉");
+      chatClose.addEventListener('click', ()=> showChat(false));
+
+      let hintShown = false;
+      setTimeout(()=>{
+        if(!hintShown){
+          hintShown = true;
+          chatHint.style.display = 'block';
+          badge.style.display = 'inline-block';
+          setTimeout(()=> chatHint.style.display = 'none', 3500);
+        }
+      }, 2200);
+
+      chatForm.addEventListener('submit', async (e)=>{
+        e.preventDefault();
+        const text = (chatInput.value || '').trim();
+        if(!text){ return; }
+        appendUser(text);
+        chatInput.value = '';
+        const placeholder = appendBot('…');
+        setLoading(placeholder, true);
+        try{
+          chatHistory.push({ role: "user", content: text });
+          const res = await fetch(openrouterEndpoint, {
+            method: "POST",
+            headers: {
+              "Authorization": "Bearer " + openrouterKey,
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            },
+            body: JSON.stringify({
+              model: "openai/gpt-3.5-turbo",
+              messages: chatHistory,
+              max_tokens: 500
+            })
+          });
+          const data = await res.json();
+          let reply = "Sorry, there was an error.";
+          if (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) {
+            reply = data.choices[0].message.content;
+          }
+          placeholder.textContent = reply;
+          chatHistory.push({ role: "assistant", content: reply });
+        } catch(err){
+          placeholder.textContent = 'Could not reach the assistant. Please try again later.';
+        } finally {
+          setLoading(placeholder, false);
+        }
+      });
+
+      // Demo: openers
+      const demoOverlay = document.getElementById('cs-demo-overlay');
+      const openDemoBtn = document.getElementById('cs-open-demo');
+      const demoCloseBtn = document.getElementById('cs-demo-close');
+      const demoCancelBtn = document.getElementById('cs-demo-cancel');
+      const demoForm = document.getElementById('cs-demo-form');
+      function openDemo(open){
+        demoOverlay.style.display = open ? 'flex' : 'none';
+        if(open){
+          const first = demoOverlay.querySelector('input,textarea,button');
+          if(first){ first.focus(); }
+        }
+      }
+      openDemoBtn.addEventListener('click', ()=> openDemo(true));
+      demoCloseBtn.addEventListener('click', ()=> openDemo(false));
+      demoCancelBtn.addEventListener('click', ()=> openDemo(false));
+      demoForm.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const fd = new FormData(demoForm);
+        const name = fd.get('name');
+        const email = fd.get('email');
+        const company = fd.get('company');
+        const datetime = fd.get('datetime');
+        const notes = fd.get('notes');
+        const subject = encodeURIComponent('Demo request - Chatting Solutions');
+        const body = encodeURIComponent(
+          'Name: ' + name + '\n' +
+          'Email: ' + email + '\n' +
+          'Company: ' + company + '\n' +
+          'Preferred: ' + (datetime || 'Any') + '\n' +
+          'Notes: ' + (notes || '-') + '\n\n' +
+          'Sent from website.'
+        );
+        window.location.href = 'mailto:hello@chattingsolutions.ai?subject=' + subject + '&body=' + body;
+        openDemo(false);
+      });
+
+      // Schedule a demo triggers
+      const wireDemoTriggers = () => {
+        const candidates = Array.from(document.querySelectorAll('a,button,[role="button"]'));
+        candidates.forEach((el)=>{
+          const label = (el.innerText || el.textContent || '').trim().toLowerCase();
+          if(label.includes('schedule a demo') || label.includes('book a demo') || el.dataset.scheduleDemo === 'true'){
+            if(!el.dataset.csDemoWired){
+              el.addEventListener('click', (ev)=>{ ev.preventDefault(); openDemo(true); });
+              el.dataset.csDemoWired = '1';
+            }
+          }
+        });
       };
-      launchBtn.onclick = function() {
-        widget.style.display = "flex";
-        launchBtn.style.display = "none";
-        body.innerHTML = '';
-        chatHistory = [chatHistory[0]];
-        appendMessage('bot', "Hello 👋, how can I help you today? If you want to know how the best AI assistant works, you're in the right place 🎉");
-      };
-      closeBtn.onclick = function() {
-        widget.style.display = "none";
-        launchBtn.style.display = "flex";
-      };
-      // Optional: Open with Ctrl+Shift+C
-      document.addEventListener('keydown', function(e) {
-        if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'c') {
-          launchBtn.click();
+      wireDemoTriggers();
+      setTimeout(wireDemoTriggers, 2000);
+      document.addEventListener('click', (e)=>{
+        if(chatWindow.style.display === 'flex'){
+          const within = chatWindow.contains(e.target) || chatButton.contains(e.target);
+          if(!within){ showChat(false); }
         }
       });
     </script>
-    <!-- Multi-channel communication illustration -->
-    <img src="assets/image4.webp" alt="Multi-channel communication with chat, social media, email, and phone" style="max-width:100%;height:auto;margin-bottom:24px;">
-    <!-- Global multilingual support illustration -->
-    <img src="assets/image5.webp" alt="World map showing multilingual chat bubbles and flags" style="max-width:100%;height:auto;margin-bottom:24px;">
-    <!-- AI chatbot dashboard illustration -->
-    <img src="assets/image6.webp" alt="AI chatbot dashboard with chat bubbles and analytics" style="max-width:100%;height:auto;margin-bottom:24px;">
   </body>
 </html>
