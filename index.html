@@ -13,6 +13,258 @@
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Fira+Code:wght@300..700&family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400..700;1,400..700&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Outfit:wght@100..900&family=Oxanium:wght@200..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <script type="module" crossorigin src="/assets/index-CpkxSCr5.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-Dp4C7b_Q.css">
+    <!-- Chatbot Widget for ChattingSolutions.com -->
+<style>
+#cs-chatbot-launch {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 9999;
+  background: linear-gradient(135deg, #0066ff 60%, #33bbff 100%);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+  width: 62px;
+  height: 62px;
+  font-size: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow 0.2s;
+}
+#cs-chatbot-widget {
+  position: fixed;
+  bottom: 100px;
+  right: 40px;
+  width: 370px;
+  max-width: 96vw;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.22);
+  z-index: 10000;
+  display: none;
+  flex-direction: column;
+  animation: popupIn 0.23s;
+}
+@keyframes popupIn {
+  from { opacity: 0; transform: translateY(40px) scale(0.96);}
+  to { opacity: 1; transform: translateY(0) scale(1);}
+}
+#cs-chatbot-header {
+  background: linear-gradient(135deg, #0066ff 60%, #33bbff 100%);
+  color: #fff;
+  padding: 14px 22px;
+  font-size: 18px;
+  font-weight: bold;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#cs-chatbot-close {
+  background: none;
+  color: #fff;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+#cs-chatbot-body {
+  max-height: 350px;
+  min-height: 180px;
+  overflow-y: auto;
+  background: #f3f7fa;
+  padding: 18px 14px 10px 16px;
+  margin-bottom: 2px;
+  border-bottom: 1px solid #e8e8e8;
+}
+.cs-chatbot-msg {
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+.cs-chatbot-msg.user {
+  text-align: right;
+}
+.cs-chatbot-msg.bot {
+  text-align: left;
+}
+.cs-chatbot-msg span {
+  display: inline-block;
+  padding: 9px 16px;
+  border-radius: 20px;
+  max-width: 80%;
+  word-break: break-word;
+}
+.cs-chatbot-msg.user span {
+  background: #e9f3ff;
+  color: #3484f7;
+  box-shadow: 0 2px 8px rgba(0, 102, 255, 0.09);
+}
+.cs-chatbot-msg.bot span {
+  background: #fff;
+  color: #444;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+#cs-chatbot-input-row {
+  display: flex;
+  padding: 14px 16px;
+  background: #f3f7fa;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+}
+#cs-chatbot-input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #b3d1ff;
+  margin-right: 8px;
+  outline: none;
+  font-size: 15px;
+  background: #fff;
+  transition: border 0.2s;
+}
+#cs-chatbot-input:focus {
+  border: 1.5px solid #0066ff;
+}
+#cs-chatbot-send, #cs-chatbot-clear {
+  background: linear-gradient(135deg, #0066ff 60%, #33bbff 100%);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 15px;
+  margin-right: 5px;
+  transition: box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(0,102,255,0.08);
+}
+#cs-chatbot-send:disabled {opacity:0.6; cursor:not-allowed;}
+#cs-chatbot-clear {
+  background: #e8e8e8;
+  color: #0066ff;
+  box-shadow: none;
+}
+@media (max-width: 600px) {
+  #cs-chatbot-widget { width: 99vw; right: 0px; }
+}
+</style>
+<button id="cs-chatbot-launch" title="Chat with Support">&#128172;</button>
+<div id="cs-chatbot-widget">
+  <div id="cs-chatbot-header">
+    <span>ChattingSolutions Support</span>
+    <button id="cs-chatbot-close" title="Close">&times;</button>
+  </div>
+  <div id="cs-chatbot-body"></div>
+  <div id="cs-chatbot-input-row">
+    <input type="text" id="cs-chatbot-input" placeholder="Type your message..." autocomplete="off" />
+    <button id="cs-chatbot-send">Send</button>
+    <button id="cs-chatbot-clear">Clear</button>
+  </div>
+</div>
+<script>
+const API_KEY = "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";
+const API_URL = "https://openrouter.ai/api/v1/chat/completions";
+
+const launchBtn = document.getElementById('cs-chatbot-launch');
+const widget = document.getElementById('cs-chatbot-widget');
+const closeBtn = document.getElementById('cs-chatbot-close');
+const body = document.getElementById('cs-chatbot-body');
+const input = document.getElementById('cs-chatbot-input');
+const sendBtn = document.getElementById('cs-chatbot-send');
+const clearBtn = document.getElementById('cs-chatbot-clear');
+
+let chatHistory = [
+  {
+    role: "system",
+    content: "You are ChattingSolutions.com Support Bot. Answer questions as a friendly, knowledgeable assistant for website visitors. If asked about ChattingSolutions.com services, reply clearly and politely."
+  }
+];
+
+function appendMessage(role, text) {
+  const msgDiv = document.createElement('div');
+  msgDiv.className = `cs-chatbot-msg ${role}`;
+  const span = document.createElement('span');
+  span.textContent = text;
+  msgDiv.appendChild(span);
+  body.appendChild(msgDiv);
+  body.scrollTop = body.scrollHeight;
+}
+
+function sendMessage() {
+  const userMsg = input.value.trim();
+  if (!userMsg) return;
+  appendMessage('user', userMsg);
+  chatHistory.push({ role: 'user', content: userMsg });
+  input.value = '';
+  sendBtn.disabled = true;
+  sendBtn.textContent = "Sending...";
+
+  fetch(API_URL, {
+    method: "POST",
+    headers: {
+      "Authorization": "Bearer " + API_KEY,
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    body: JSON.stringify({
+      model: "openai/gpt-3.5-turbo",
+      messages: chatHistory,
+      max_tokens: 400
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    let botMsg = "Sorry, there was an error.";
+    if (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) {
+      botMsg = data.choices[0].message.content;
+    }
+    appendMessage('bot', botMsg);
+    chatHistory.push({ role: 'assistant', content: botMsg });
+  })
+  .catch(() => {
+    appendMessage('bot', "Network error. Try again later.");
+  })
+  .finally(() => {
+    sendBtn.disabled = false;
+    sendBtn.textContent = "Send";
+  });
+}
+
+sendBtn.onclick = sendMessage;
+input.addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') sendMessage();
+});
+clearBtn.onclick = function() {
+  body.innerHTML = '';
+  chatHistory = [
+    {
+      role: "system",
+      content: "You are ChattingSolutions.com Support Bot. Answer questions as a friendly, knowledgeable assistant for website visitors. If asked about ChattingSolutions.com services, reply clearly and politely."
+    }
+  ];
+};
+
+launchBtn.onclick = function() {
+  widget.style.display = "flex";
+  launchBtn.style.display = "none";
+  setTimeout(function() { input.focus(); }, 300);
+};
+closeBtn.onclick = function() {
+  widget.style.display = "none";
+  launchBtn.style.display = "flex";
+};
+
+// Optional: Open with Ctrl+Shift+S
+document.addEventListener('keydown', function(e) {
+  if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 's') {
+    launchBtn.click();
+  }
+});
+</script>
+<!-- End Chatbot Widget -->
   </head>
   <body>
     <div id="root"></div>
